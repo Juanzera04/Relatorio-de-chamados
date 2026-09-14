@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relatório de Chamados - Gerência de Contas</title>
+<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<header class="header">
+  <img src="logo.png" alt="MG" class="header__logo">
+  <div>
+    <p class="header__title">Relatório de Chamados</p>
+    <p class="header__subtitle">Acompanhamento de chamados abertos pela e para a Gerência de Contas</p>
+    <p class="header__updated" id="dataAtualizacao"></p>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="view-switch">
+    <button class="view-switch__btn active" data-view="solicitante" id="btnViewSolicitante">
+      <div class="view-switch__label">Abertos pela Gerência de Contas</div>
+      <div class="view-switch__desc">Chamados solicitados pela Gerência de Contas para outros departamentos</div>
+      <div class="view-switch__count" id="countViewSolicitante">-</div>
+    </button>
+    <button class="view-switch__btn" data-view="responsavel" id="btnViewResponsavel">
+      <div class="view-switch__label">Abertos para a Gerência de Contas</div>
+      <div class="view-switch__desc">Chamados sob responsabilidade da Gerência de Contas</div>
+      <div class="view-switch__count" id="countViewResponsavel">-</div>
+    </button>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card card--total">
+      <div class="card__label">Total de Chamados</div>
+      <div class="card__value" id="cardTotal">-</div>
+    </div>
+    <div class="card card--pendente">
+      <div class="card__label">Pendente</div>
+      <div class="card__value" id="cardPendente">-</div>
+      <div class="card__sub" id="cardPendentePct">-</div>
+    </div>
+    <div class="card card--aguardando">
+      <div class="card__label">Aguardando Solicitante</div>
+      <div class="card__value" id="cardAguardando">-</div>
+      <div class="card__sub" id="cardAguardandoPct">-</div>
+    </div>
+    <div class="card card--encerrado">
+      <div class="card__label">Encerrado</div>
+      <div class="card__value" id="cardEncerrado">-</div>
+      <div class="card__sub" id="cardEncerradoPct">-</div>
+    </div>
+    <div class="card card--tempo">
+      <div class="card__label">Tempo Médio de Entrega</div>
+      <div class="card__value" id="cardTempoMedio">-</div>
+      <div class="card__sub">dias, considerando apenas chamados entregues</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel__header">
+      <span class="panel__title">▽ Filtros</span>
+      <button class="btn-clear" id="btnLimparFiltros">Limpar filtros</button>
+    </div>
+    <div class="filters-grid">
+      <div class="filter-field">
+        <label>Cliente</label>
+        <input type="text" id="filtroCliente" placeholder="Buscar cliente...">
+      </div>
+      <div class="filter-field">
+        <label id="labelDepartamento">Departamento</label>
+        <select id="filtroDepartamento"><option value="">Todos</option></select>
+      </div>
+      <div class="filter-field">
+        <label>Responsável</label>
+        <select id="filtroResponsavel"><option value="">Todos</option></select>
+      </div>
+      <div class="filter-field">
+        <label>Coordenador</label>
+        <select id="filtroCoordenador"><option value="">Todos</option></select>
+      </div>
+      <div class="filter-field">
+        <label>Problema</label>
+        <select id="filtroProblema"><option value="">Todos</option></select>
+      </div>
+      <div class="filter-field">
+        <label>Abertura de</label>
+        <input type="date" id="filtroDataDe">
+      </div>
+      <div class="filter-field">
+        <label>Abertura até</label>
+        <input type="date" id="filtroDataAte">
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="table-tabs__count"><span id="tabTotalCount">0</span> chamados</div>
+    <div class="table-tabs">
+      <button class="tab-btn active" data-status="Pendente" id="tabPendente">Pendente <span class="badge">0</span></button>
+      <button class="tab-btn" data-status="Aguardando solicitante" id="tabAguardando">Aguardando Solicitante <span class="badge">0</span></button>
+      <button class="tab-btn" data-status="Encerrado" id="tabEncerrado">Encerrado <span class="badge">0</span></button>
+    </div>
+    <div class="table-wrap">
+      <table class="chamados">
+        <thead>
+          <tr id="tableHeadRow"></tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+      <div class="empty-state" id="emptyState" style="display:none;">Nenhum chamado encontrado para os filtros selecionados.</div>
+    </div>
+  </div>
+
+</div>
+
+<script src="data/chamados/dados.js"></script>
+<script src="static/script.js"></script>
+</body>
+</html>

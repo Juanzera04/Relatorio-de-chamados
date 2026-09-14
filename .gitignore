@@ -1,0 +1,11 @@
+# Fonte bruta (não faz parte da interface) - usada apenas para gerar data/chamados/dados.js
+base.xlsx
+
+# Imagens de referência de layout (não fazem parte da interface final)
+Exemplo.png
+Exemplo2.png
+Exemplo3.png
+
+# Configs/locais
+.DS_Store
+Thumbs.db

@@ -13,9 +13,12 @@
   <div>
     <p class="header__title">Relatório de Chamados</p>
     <p class="header__subtitle">Acompanhamento de chamados abertos pela e para a Gerência de Contas</p>
-    <p class="header__updated" id="dataAtualizacao"></p>
+    <p class="header__updated" id="dataAtualizacao">Carregando base...</p>
   </div>
+  <button class="btn-reload" id="btnRecarregarBase" title="Recarregar base.xlsx">⟳ Recarregar</button>
 </header>
+
+<div class="load-error" id="loadError" style="display:none;"></div>
 
 <div class="container">
 
@@ -116,7 +119,8 @@
 
 </div>
 
-<script src="data/chamados/dados.js"></script>
+<script src="static/vendor/xlsx.full.min.js"></script>
+<script src="static/data-loader.js"></script>
 <script src="static/script.js"></script>
 </body>
 </html>

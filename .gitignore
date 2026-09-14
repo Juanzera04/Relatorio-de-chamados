@@ -1,5 +1,7 @@
-# Fonte bruta (não faz parte da interface) - usada apenas para gerar data/chamados/dados.js
-base.xlsx
+# Base de dados real (contém nomes de clientes e dados internos da empresa).
+# O repositório é público, então este arquivo NÃO é versionado - ele precisa
+# existir localmente em data/chamados/base.xlsx para a interface funcionar.
+data/chamados/base.xlsx
 
 # Imagens de referência de layout (não fazem parte da interface final)
 Exemplo.png

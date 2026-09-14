@@ -362,14 +362,46 @@ function bindTabs() {
   });
 }
 
-function init() {
-  document.getElementById("dataAtualizacao").textContent = `Base atualizada em ${CHAMADOS_UPDATED_AT}`;
-  renderViewCounts();
-  refreshFilterOptions();
+let eventsWiredOnce = false;
+
+function wireStaticEventsOnce() {
+  if (eventsWiredOnce) return;
+  eventsWiredOnce = true;
   bindFilterEvents();
   bindViewSwitch();
   bindTabs();
+}
+
+async function carregarEExibir() {
+  const errorEl = document.getElementById("loadError");
+  const updatedEl = document.getElementById("dataAtualizacao");
+  errorEl.style.display = "none";
+  updatedEl.textContent = "Carregando base...";
+
+  try {
+    await carregarBaseChamados();
+  } catch (err) {
+    updatedEl.textContent = "Falha ao carregar a base";
+    errorEl.textContent =
+      `Não foi possível carregar "${BASE_XLSX_PATH}": ${err.message} ` +
+      `Verifique se o arquivo existe em data/chamados/base.xlsx e se a página está sendo aberta ` +
+      `através de um servidor local (http://...), não direto do disco (file://...).`;
+    errorEl.style.display = "block";
+    console.error(err);
+    return;
+  }
+
+  state.expandedId = null;
+  updatedEl.textContent = `Base atualizada em ${CHAMADOS_UPDATED_AT}`;
+  wireStaticEventsOnce();
+  renderViewCounts();
+  refreshFilterOptions();
   renderAll();
+}
+
+function init() {
+  document.getElementById("btnRecarregarBase").addEventListener("click", carregarEExibir);
+  carregarEExibir();
 }
 
 document.addEventListener("DOMContentLoaded", init);

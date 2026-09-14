@@ -160,6 +160,7 @@ function getTableColumns() {
     cols.push({ key: "entregueQuantosDias", label: "Entregue a quantos dias" });
   }
   if (state.statusTab === "Encerrado") {
+    cols.push({ key: "dataEntrega", label: "Data de Entrega" });
     cols.push({ key: "tempoAtendimento", label: "Tempo de Atendimento" });
   }
   return cols;
@@ -190,6 +191,8 @@ function cellValue(c, key) {
       return formatDate(c.dataAbertura);
     case "dataPrevisao":
       return formatDate(c.dataPrevisao);
+    case "dataEntrega":
+      return formatDate(c.dataEntrega);
     case "entregueQuantosDias":
       return formatDias(c.entregueQuantosDias);
     case "tempoAtendimento":

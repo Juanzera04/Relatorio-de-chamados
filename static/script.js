@@ -157,6 +157,7 @@ function getTableColumns() {
     { key: "dataPrevisao", label: "Previsão Atend." },
   ];
   if (state.statusTab === "Aguardando solicitante") {
+    cols.push({ key: "dataEntrega", label: "Data de Entrega" });
     cols.push({ key: "entregueQuantosDias", label: "Entregue a quantos dias" });
   }
   if (state.statusTab === "Encerrado") {
